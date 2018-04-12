@@ -6,9 +6,11 @@ RESUME_DIR = examples/resume
 CV_DIR = examples/cv
 DOCUMENTS_DIR = ..
 MY_CV_DIR = my_cv
+MY_CL_DIR = my_cl
 RESUME_SRCS = $(shell find $(RESUME_DIR) -name '*.tex')
 CV_SRCS = $(shell find $(CV_DIR) -name '*.tex')
 MY_CV_SRCS = $(shell find $(MY_CV_DIR) -name '*.tex')
+MY_CV_SRCS = $(shell find $(MY_CL_DIR) -name '*.tex')
 
 examples: $(foreach x, coverletter cv resume, $x.pdf)
 
@@ -23,6 +25,9 @@ W_Weclewski_cv_eng.pdf: $(MY_CV_DIR)/cv.tex $(MY_CV_SRCS)
 
 coverletter.pdf: $(EXAMPLES_DIR)/coverletter.tex
 	$(CC) -output-directory=$(EXAMPLES_DIR) $<
+
+W_Weclewski_list_pl.pdf: $(MY_CL_DIR)/list_motywacyjny.tex $(MY_CL_SRCS)
+	$(CC) -output-directory=$(MY_CL_DIR) $<
 
 clean:
 	rm -rf $(EXAMPLES_DIR)/*.pdf
